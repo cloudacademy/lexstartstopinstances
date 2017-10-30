@@ -1,12 +1,14 @@
 import boto3
 import logging
+import os
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
-AWS_REGION = 'ap-southeast-2'
+AWS_REGION = os.environ['INSTANCE_REGION']
 INTENT_START_INSTANCES = 'StartInstances'
 INTENT_STOP_INSTANCES = 'StopInstances'
+
 
 def lambda_handler(event, context):
     logger.debug('event.bot.name={}'.format(event['bot']['name']))

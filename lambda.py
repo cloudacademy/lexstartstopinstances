@@ -3,7 +3,7 @@ import logging
 import os
 
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 AWS_REGION = os.environ['INSTANCE_REGION']
 INTENT_START_INSTANCES = 'StartInstances'
@@ -11,7 +11,7 @@ INTENT_STOP_INSTANCES = 'StopInstances'
 
 
 def lambda_handler(event, context):
-    logger.debug('event.bot.name={}'.format(event['bot']['name']))
+    logger.info('event.bot.name={}'.format(event['bot']['name']))
 
     return dispatch(event)
 
@@ -29,8 +29,8 @@ def dispatch(intent_request):
 
 
 def ec2_instances_start(intent_request):
-    logger.debug("ec2_instances_start entered...")
-    logger.debug(intent_request)
+    logger.info("ec2_instances_start entered...")
+    logger.info(intent_request)
 
     instance_tag = intent_request['currentIntent']['slots']['serverType']
 
@@ -56,8 +56,8 @@ def ec2_instances_start(intent_request):
 
 
 def ec2_instances_stop(intent_request):
-    logger.debug("ec2_instances_stop entered...")
-    logger.debug(intent_request)
+    logger.info("ec2_instances_stop entered...")
+    logger.info(intent_request)
 
     instance_tag = intent_request['currentIntent']['slots']['serverType']
 

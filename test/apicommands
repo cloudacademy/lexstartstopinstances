@@ -1,0 +1,66 @@
+aws polly synthesize-speech \
+  --region us-east-1 \
+  --output-format "mp3" \
+  --voice-id "Kendra" \
+  --sample-rate 16000 \
+  --text "start my server please" \
+  ./audio/speech.start.mp3
+
+mpg123 ./audio/speech.start.mp3
+
+ffmpeg -i ./audio/speech.start.mp3 -f s16le -acodec pcm_s16le ./audio/speech.start.pcm
+
+aws lex-runtime post-content \
+    --region us-east-1 \
+    --bot-name StartStopServerBot \
+    --content-type "audio/l16; rate=16000; channels=1" \
+    --bot-alias "\$LATEST" \
+    --user-id Jeremy \
+    --input-stream ./audio/speech.start.pcm \
+    ./audio/Output1Speech.mpg
+
+==========================================
+
+aws polly synthesize-speech \
+  --region us-east-1 \
+  --output-format "mp3" \
+  --voice-id "Kendra" \
+  --sample-rate 16000 \
+  --text "red" \
+  ./audio/speech.red.mp3
+
+mpg123 ./audio/speech.red.mp3
+
+ffmpeg -i ./audio/speech.red.mp3 -f s16le -acodec pcm_s16le ./audio/speech.red.pcm
+
+aws lex-runtime post-content \
+    --region us-east-1 \
+    --bot-name StartStopServerBot \
+    --content-type "audio/l16; rate=16000; channels=1" \
+    --bot-alias "\$LATEST" \
+    --user-id Jeremy \
+    --input-stream ./audio/speech.red.pcm \
+    ./audio/Output2Speech.mpg
+
+==========================================
+
+aws polly synthesize-speech \
+  --region us-east-1 \
+  --output-format "mp3" \
+  --voice-id "Kendra" \
+  --sample-rate 16000 \
+  --text "yes" \
+  ./audio/speech.yes.mp3
+
+mpg123 ./audio/speech.yes.mp3
+
+ffmpeg -i ./audio/speech.yes.mp3 -f s16le -acodec pcm_s16le ./audio/speech.yes.pcm
+
+aws lex-runtime post-content \
+    --region us-east-1 \
+    --bot-name StartStopServerBot \
+    --content-type "audio/l16; rate=16000; channels=1" \
+    --bot-alias "\$LATEST" \
+    --user-id Jeremy \
+    --input-stream ./audio/speech.yes.pcm \
+    ./audio/3OutputSpeech.mpg

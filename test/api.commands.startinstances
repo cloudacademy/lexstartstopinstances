@@ -3,12 +3,12 @@ aws polly synthesize-speech \
   --output-format "mp3" \
   --voice-id "Kendra" \
   --sample-rate 16000 \
-  --text "start my server please" \
-  ./audio/speech.start.mp3
+  --text "start my instances please" \
+  ./audio/speech.startinstances.mp3
 
-mpg123 ./audio/speech.start.mp3
+mpg123 ./audio/speech.startinstances.mp3
 
-ffmpeg -i ./audio/speech.start.mp3 -f s16le -acodec pcm_s16le ./audio/speech.start.pcm
+ffmpeg -i ./audio/speech.startinstances.mp3 -f s16le -acodec pcm_s16le ./audio/speech.startinstances.pcm
 
 aws lex-runtime post-content \
     --region us-east-1 \
@@ -16,7 +16,7 @@ aws lex-runtime post-content \
     --content-type "audio/l16; rate=16000; channels=1" \
     --bot-alias "\$LATEST" \
     --user-id Jeremy \
-    --input-stream ./audio/speech.start.pcm \
+    --input-stream ./audio/speech.startinstances.pcm \
     ./audio/Output1Speech.mpg
 
 ==========================================

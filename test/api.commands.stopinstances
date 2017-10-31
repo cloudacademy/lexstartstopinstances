@@ -1,0 +1,66 @@
+aws polly synthesize-speech \
+  --region us-east-1 \
+  --output-format "mp3" \
+  --voice-id "Kendra" \
+  --sample-rate 16000 \
+  --text "stop my instances please" \
+  ./audio/speech.stopinstances.mp3
+
+mpg123 ./audio/speech.stopinstances.mp3
+
+ffmpeg -i ./audio/speech.stopinstances.mp3 -f s16le -acodec pcm_s16le ./audio/speech.stopinstances.pcm
+
+aws lex-runtime post-content \
+    --region us-east-1 \
+    --bot-name StartStopInstancesBot \
+    --content-type "audio/l16; rate=16000; channels=1" \
+    --bot-alias "\$LATEST" \
+    --user-id Jeremy \
+    --input-stream ./audio/speech.stopinstances.pcm \
+    ./audio/Output1Speech.mpg
+
+==========================================
+
+aws polly synthesize-speech \
+  --region us-east-1 \
+  --output-format "mp3" \
+  --voice-id "Kendra" \
+  --sample-rate 16000 \
+  --text "red" \
+  ./audio/speech.red.mp3
+
+mpg123 ./audio/speech.red.mp3
+
+ffmpeg -i ./audio/speech.red.mp3 -f s16le -acodec pcm_s16le ./audio/speech.red.pcm
+
+aws lex-runtime post-content \
+    --region us-east-1 \
+    --bot-name StartStopInstancesBot \
+    --content-type "audio/l16; rate=16000; channels=1" \
+    --bot-alias "\$LATEST" \
+    --user-id Jeremy \
+    --input-stream ./audio/speech.red.pcm \
+    ./audio/Output2Speech.mpg
+
+==========================================
+
+aws polly synthesize-speech \
+  --region us-east-1 \
+  --output-format "mp3" \
+  --voice-id "Kendra" \
+  --sample-rate 16000 \
+  --text "yes" \
+  ./audio/speech.yes.mp3
+
+mpg123 ./audio/speech.yes.mp3
+
+ffmpeg -i ./audio/speech.yes.mp3 -f s16le -acodec pcm_s16le ./audio/speech.yes.pcm
+
+aws lex-runtime post-content \
+    --region us-east-1 \
+    --bot-name StartStopInstancesBot \
+    --content-type "audio/l16; rate=16000; channels=1" \
+    --bot-alias "\$LATEST" \
+    --user-id Jeremy \
+    --input-stream ./audio/speech.yes.pcm \
+    ./audio/3OutputSpeech.mpg

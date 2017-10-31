@@ -1,0 +1,18 @@
+{
+  "currentIntent": {
+    "slots": {
+      "serverType": "green"
+    },
+    "name": "StartInstances",
+    "confirmationStatus": "None"
+  },
+  "bot": {
+    "alias": "$LATEST",
+    "version": "$LATEST",
+    "name": "StartStopServerBot"
+  },
+  "userId": "John",
+  "outputDialogMode": "Text",
+  "messageVersion": "1.0",
+  "sessionAttributes": {}
+}

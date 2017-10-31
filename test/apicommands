@@ -12,7 +12,7 @@ ffmpeg -i ./audio/speech.start.mp3 -f s16le -acodec pcm_s16le ./audio/speech.sta
 
 aws lex-runtime post-content \
     --region us-east-1 \
-    --bot-name StartStopServerBot \
+    --bot-name StartStopInstancesBot \
     --content-type "audio/l16; rate=16000; channels=1" \
     --bot-alias "\$LATEST" \
     --user-id Jeremy \
@@ -35,7 +35,7 @@ ffmpeg -i ./audio/speech.red.mp3 -f s16le -acodec pcm_s16le ./audio/speech.red.p
 
 aws lex-runtime post-content \
     --region us-east-1 \
-    --bot-name StartStopServerBot \
+    --bot-name StartStopInstancesBot \
     --content-type "audio/l16; rate=16000; channels=1" \
     --bot-alias "\$LATEST" \
     --user-id Jeremy \
@@ -58,7 +58,7 @@ ffmpeg -i ./audio/speech.yes.mp3 -f s16le -acodec pcm_s16le ./audio/speech.yes.p
 
 aws lex-runtime post-content \
     --region us-east-1 \
-    --bot-name StartStopServerBot \
+    --bot-name StartStopInstancesBot \
     --content-type "audio/l16; rate=16000; channels=1" \
     --bot-alias "\$LATEST" \
     --user-id Jeremy \

@@ -1,9 +1,9 @@
 {
   "currentIntent": {
     "slots": {
-      "serverType": "red"
+      "serverType": "blue"
     },
-    "name": "StartServer",
+    "name": "StartInstances",
     "confirmationStatus": "None"
   },
   "bot": {

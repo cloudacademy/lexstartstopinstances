@@ -76,7 +76,7 @@ def ec2_instances_stop(intent_request):
         message = "EC2 instances with tag {} were STOPPED successfully!".format(instance_tag)
 
     except BaseException as e:
-        message = "A problem was encountered trying to START the {} EC2 instances.".format(instance_tag)
+        message = "A problem was encountered trying to STOP the {} EC2 instances.".format(instance_tag)
         logger.error('ec2_instances_stop, error={}'.format(str(e)))
 
     return close(message)
